@@ -1,0 +1,70 @@
+=============================================================
+How to build a doubly nested configuration such as AGRIF_DEMO
+=============================================================
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+1) Files needed from root (parent) grid
+:::::::::::::::::::::::::::::::::::::::::::::::::
+- coordinates.nc
+- bathy_meter.nc
+- bathymetry database (For example GEBCO 2014 dataset)
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+2) Compile the tool
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+$NEMOPATH/NEMOGCM/TOOLS/maketools -n NESTING -m X64_ADA -j 4
+
+It creates 5 executables:
+- agrif_create_coordinates.exe
+- agrif_create_bathy.exe
+- agrif_create_restart.exe
+- agrif_create_restart_trc.exe
+- agrif_create_data.exe
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+3) Create coordinates and bathymetries
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+a) agrif_create_coordinates.exe namelist_nordic1
+   It creates level 1 child grid coordinates: 1_coordinates.nc
+
+b) agrif_create_bathy.exe namelist_nordic1
+   It creates level 1 child grid bathymetry: 1_bathymeter.nc
+   It updates        parent grid bathymetry: bathy_updated.nc
+
+c) agrif_create_coordinates.exe namelist_nordic2
+   It creates level 2 child grid coordinates: 2_coordinates.nc
+
+d) agrif_create_bathy.exe namelist_nordic2
+   It creates level 2 child grid bathymetry: 2_bathymeter.nc
+   It updates level 1 child grid bathymetry: 1_bathy_updated.nc
+
+e) agrif_create_bathy.exe namelist_nordic1_update
+   It updates        parent grid bathymetry: bathy_updated_parent.nc
+
+Note: This last step takes into account both levels 1 and 2 bathymetries to update the parent grid bathymetry
+      to make sure that volumes match between child grids and parent grid.
+      To only perform an update as in step e), i.e. without interpolation, one has to set in the namelist:
+      - elevation_database = 1_bathy_updated.nc
+      - type_bathy_interp = 2
+
+** Files needed for your model to run:
+   -   bathy_updated_parent.nc  +    coordinates.nc
+   - 1_bathy_updated.nc         +  1_coordinates.nc
+   - 2_bathy_meter.nc           +  2_coordinates.nc
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::
+4) Create data
+:::::::::::::::::::::::::::::::::::::::::::::::::
+
+a) agrif_create_data.exe namelist_nordic1
+   It creates level 1 child grid data: 1_chlorophyll.nc etc
+
+b) agrif_create_data.exe namelist_nordic2
+   It creates level 2 child grid data: 2_chlorophyll.nc etc
+
+

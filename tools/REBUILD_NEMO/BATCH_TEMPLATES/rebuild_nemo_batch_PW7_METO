@@ -1,0 +1,31 @@
+#!/bin/ksh
+#
+#@ shell           = /usr/bin/ksh
+#@ class           = serial
+#@ job_type        = serial
+#@ job_name        = rebuild_nemo
+#@ output          = $(job_name).$(jobid).out
+#@ error           = $(job_name).$(jobid).out
+#@ notification    = never
+#@ resources       = ConsumableMemory(MEMORY)
+#@ node            = 1
+#@ parallel_threads = 8
+#@ task_affinity    = cpu(NTHREADS)
+#@ cpu_limit        = 00:5:00
+#@ wall_clock_limit = 00:5:00
+#@ queue
+
+export OMP_NUM_THREADS=NTHREADS
+
+MPI_DSM_VERBOSE=1; export MPI_DSM_VERBOSE
+
+nam_rebuild=NAMELIST
+indir=INDIR
+
+
+cd ${LOADL_STEP_INITDIR}
+
+${indir}/rebuild_nemo.exe $nam_rebuild
+RC=$?
+
+exit $RC

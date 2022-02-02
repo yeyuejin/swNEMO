@@ -1,0 +1,183 @@
+#!/bin/ksh
+
+# CALLS: rebuild_nemo.exe
+
+#set -ax
+usage ()
+{
+   echo
+   echo "  NEMO Rebuild"
+   echo "  ************"
+   echo
+   echo "  usage: ${0##*/} [-l -p -s -m -n -r -d -x -y -z -t -c] filebase ndomain [rebuild dimensions]"
+   echo
+   echo "  flags:    -l arch            submit to compute node"
+   echo "            -p num             use num threads"
+   echo "            -s num             split 4D vars into time slice of size num"
+   echo "            -m                 force masking of global arrays (zero if no mdi)"
+   echo "            -n namelist        full path to namelist file to be created (otherwise default nam_rebuild+_process_id is used)"
+   echo "            -r memory          Memory to request on compute node including units (Default = 10Gb)"
+   echo ""
+   echo "      key_netcdf4 only "
+   echo "            -d deflate_level     deflate level for output files"
+   echo "            -x chunksize along x " 
+   echo "            -y chunksize along y " 
+   echo "            -z chunksize along z " 
+   echo "            -t chunksize along t " 
+   echo "            -c total size of the chunk cache "
+   echo
+   exit 1
+}
+
+while getopts l:p:s:n:r:d:x:y:z:t:c:m opt
+do
+  case ${opt} in
+      l) 
+         BATCH="yes"
+         ARCH=${OPTARG}
+      ;;
+      p)
+         OMP_NUM_THREADS=${OPTARG}
+      ;;
+      s)
+         NSLICESIZE=${OPTARG}
+      ;;
+      m) 
+         NMASK="TRUE"
+         echo ""
+         echo "output is mask using netcdf missing value (_Fillvalue attribute) or 0 if missing value not in the netcdf."
+         echo ""
+      ;;
+      d)
+         DEFLATE=${OPTARG}
+      ;;
+      n)
+         nam_rebuild=${OPTARG}
+      ;;
+      r)
+         MEMORY=${OPTARG}
+      ;;
+      x)
+         NXCHUNK=${OPTARG}
+      ;;
+      y)
+         NYCHUNK=${OPTARG}
+      ;;
+      z)
+         NZCHUNK=${OPTARG}
+      ;;
+      t)
+         NTCHUNK=${OPTARG}
+      ;;
+      c)
+         CHUNKSIZE=${OPTARG}
+      ;;
+  esac
+done
+shift $(expr ${OPTIND} - 1)
+
+if [[ $# -lt 2 ]] ; then
+   usage
+fi
+
+script_dir=$(dirname $0)
+
+file=$1
+ndomain=$2
+DIM1=$3
+DIM2=$4
+export OMP_NUM_THREADS=${OMP_NUM_THREADS:-1}
+nam_rebuild=${nam_rebuild:-nam_rebuild_$$}
+MEMORY=${MEMORY:-10Gb}
+
+#Find out the maximum number of files that can be opened and increase if necessary)
+nopen=$(ulimit -n)
+if [[ $ndomain -gt $nopen ]] ; then
+  nopen=$((ndomain+4))   # +2 failed !!!
+fi
+
+if [[ -n ${DIM1} && -n ${DIM2} ]] ; then
+   dim_str=" dims '${DIM1}','${DIM2}'"
+   dims="dims='${DIM1}','${DIM2}'"
+fi
+
+echo "file ${file},  num_domains ${ndomain}, num_threads ${OMP_NUM_THREADS}${dim_str}"
+
+cat > $nam_rebuild << EOC
+&nam_rebuild
+filebase='${file}'
+ndomain=${ndomain}
+EOC
+if [[ -n ${dims} ]] ; then
+   echo ${dims} >> $nam_rebuild
+fi
+if [[ -n ${NCSLICESIZE} ]] ; then
+   echo " nslicesize=${NCSLICESIZE}" >> $nam_rebuild
+fi
+if [[ -n ${NMASK} ]] ; then
+   echo " l_maskout=.true." >> $nam_rebuild
+fi
+if [[ -n ${DEFLATE} ]] ; then
+   echo " deflate_level=${DEFLATE}" >> $nam_rebuild
+fi
+if [[ -n ${NXCHUNK} ]] ; then
+   echo " nc4_xchunk=${NXCHUNK}" >> $nam_rebuild
+fi
+if [[ -n ${NYCHUNK} ]] ; then
+   echo " nc4_ychunk=${NYCHUNK}" >> $nam_rebuild
+fi
+if [[ -n ${NZCHUNK} ]] ; then
+   echo " nc4_zchunk=${NZCHUNK}" >> $nam_rebuild
+fi
+if [[ -n ${NTCHUNK} ]] ; then
+   echo " nc4_tchunk=${NTCHUNK}" >> $nam_rebuild
+fi
+if [[ -n ${CHUNKSIZE} ]] ; then
+   echo " fchunksize=${CHUNKSIZE}" >> $nam_rebuild
+fi
+
+
+
+echo "/" >> $nam_rebuild
+
+if [[ ${BATCH} == "yes" ]] ; then
+
+   template_dir=${script_dir}/BATCH_TEMPLATES/
+   param_file=${template_dir}/param_${ARCH}
+   if [ ! -f $param_file ]; then 
+      echo ''
+      echo "E R R O R: $param_file is missing, stop 42"
+      echo ''
+      echo "check your arch name or add one $param_file file in BATCH_TEMPLATES"
+      echo ''
+      exit 42
+   fi
+   . $param_file
+
+   batch_file=rebuild_nemo_batch_${ARCH}
+   if [ ! -f ${template_dir}/${batch_file} ]; then 
+      echo ''
+      echo "E R R O R: $batch_file is missing, stop 42"
+      echo ''
+      echo "check your arch name or add one $batch_file file in BATCH_TEMPLATES"
+      echo ''
+      exit 42
+   fi
+
+   #Create a modified local copy of the batch submission file
+   #The process ID is appended to the end of the file name so it is unique
+   cat ${template_dir}/${batch_file} | sed -e"s/NTHREADS/${OMP_NUM_THREADS}/" \
+      -e"s/MEMORY/${MEMORY}/" \
+      -e"s:INDIR:${script_dir}:" \
+      -e"s/NOPEN/${nopen}/" \
+      -e"s/NAMELIST/${nam_rebuild}/" > ${batch_file}_$$.sh
+   
+   #Submit the job
+   echo "Submitting job to compute node"
+   $BATCH_CMD ${batch_file}_$$.sh
+
+else
+   ulimit -n $nopen
+   ${script_dir}/rebuild_nemo.exe $nam_rebuild
+fi
+

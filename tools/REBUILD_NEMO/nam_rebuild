@@ -1,0 +1,12 @@
+&nam_rebuild
+filebase='mesh_mask'
+ndomain=36
+l_maskout=.false       !(-m option: useful if input file comes from a run using land suppression)
+nslicesize=0           !(-s option: 0 means no splitting in time slice)
+deflate_level=1        !(-d option)
+nc4_xchunk=206         !(-x option)
+nc4_ychunk=135         !(-y option)
+nc4_zchunk=1           !(-z option)
+nc4_tchunk=1           !(-t option)
+fchunksize=32000000    !(-c option)
+/

@@ -1,0 +1,21 @@
+#!/bin/bash --login
+#PBS -N Rebuild_Nemo
+#PBS -q shared
+#PBS -l ncpus=NTHREADS
+#PBS -l mem=MEMORY
+#PBS -l walltime=1:0:0
+
+export OMP_NUM_THREADS=NTHREADS
+indir=INDIR
+nam_rebuild=NAMELIST
+
+ulimit -s unlimited
+ulimit -n NOPEN
+
+module load cray-snplauncher
+cd $PBS_O_WORKDIR
+${indir}/rebuild_nemo.exe $nam_rebuild
+
+RC=$?
+
+exit $RC

@@ -1,0 +1,134 @@
+Instructions for using unsupported configurations on systems without wget access to
+the internet
+
+The unsupported configurations in NEMO are provided as a way for users to provide
+alternative configurations to the wider community without having to rely on system team
+sponsership and support. The idea is to provide minimal but sufficient information
+with the standard distribution to allow ancillary files to be fetched from remote
+servers at compile time. Thus a makenemo command such as:
+
+./makenemo -n MYISOMIP -u ISOMIP -m some_arch
+
+will create a new configuration called MYISOMIP with MY_SRC and EXP00 directories
+populated from a remote server. It does this by first using the wget command to fetch a
+list of remote files and then using wget repeatedly to fetch each of the files listed
+therein. The location of the remote list is contained in one line of information held
+in the uspcfg.txt file (in CONFIG).
+
+These instructions provide a work-around for systems without direct access to the
+internet or on which wget has been disabled/not installed. On these systems it is
+possible to create local copies of the remote files and replace the wget function
+with a local copy command. It will be the user's responsibility to ensure that the
+local copies reflect any changes made in the remote sources.
+
+The procedure requires the following steps:
+
+1. From the target NEMOGCM directory on your target system copy the following
+   files into a working directory on a system that does have internet access
+   and a working wget command:
+
+      a. TOOLS/MISCELLANEOUS/make_usp_tar.sh
+      b. CONFIG/uspcfg.txt
+
+2. On that alternative system and in the working directory containing the newly
+   copied files, run the make_usp_tar.sh script. The script takes three arguments:
+
+      a. The name of the uspcfg.txt file
+      b. The name of the unsupported configuration you wish to use
+      c. The name of a directory that will be created and filled with the remote
+         files in the current working directory. This directory will be tarred and
+         eventually transferred to the target system. There it will be unpacked and
+         will form the local archive for this configuration. A meaningful name is
+         therefore recommended.
+
+   For example:
+
+   ./make_usp_tar.sh uspcfg.txt ISOMIP ISOMIP_ARCHIVE
+
+3. Copy the resulting tarball (in this case: ISOMIP_ARCHIVE.tar) to the target 
+   system and unpack (tar xvf ISOMIP_ARCHIVE.tar) in a location that is visible to 
+   the node on which you intend to compile nemo. The unpacked directory will contain
+   the files retrieved from the remote server, modified versions of the file list and
+   uspcfg.txt files and two new scripts. For example:
+
+   ls -1R ISOMIP_ARCHIVE
+   cpp_ISOMIP.fcm             - downloaded from remote server
+   def_wget                   - newly constructed script
+   local_template.ctl         - file list modified for local copy
+   uspcfg_local_template.txt  - a copy of uspcfg.txt with modification for local copy
+   remote_file.list           - downloaded from remote server
+   set_local_uspcfg           - newly constructed script
+   EXP00                      - new subdirectory
+   MY_SRC                     - new subdirectory
+
+   ./EXP00:
+   iodef.xml                  - downloaded from remote server
+   namelist_cfg               - downloaded from remote server
+
+   ./MY_SRC:
+   domzgr.F90                 - downloaded from remote server
+   istate.F90                 - downloaded from remote server
+
+4. The final stage is to enter the directory and execute the set_local_uspcfg script.
+   This script will prompt for a full path to the target CONFIG directory and then:
+
+   a. Edit the templates and create local.ctl and uspcfg_local.txt files by inserting 
+      the full path to the archive directory (i.e. the current working directory)
+   b. move uspcfg_local.txt to the named CONFIG directory
+   c. rename any existing uspcfg.txt file in the CONFIG directory to uspcfg_remote.txt
+   d. insert symbolic link (uspcfg.txt) to uspcfg_local.txt in the CONFIG directory
+   e. redefine/define wget as an exported bash function to simply copy
+
+   This last action is needed so that subsequent use of makenemo with the -u argument
+   will not invoke wget. For this to be effective the set_local_usp script should be run
+   within the same bash shell as makenemo will be run in. I.e.:
+
+   . ./set_local_usp
+
+   If this is not possible or the makenemo command is run at a later date, then the
+   def_wget script should be run in the bash shell before any attempt to use the -u
+   option of makenemo. I.e.:
+
+   . ./def_wget
+
+   [ Tip: check that the definition/re-definition of wget has worked correctly by
+     issuing this command:
+
+     wget a b c
+
+     If you get messages such as:
+
+       wget a b c
+       --2016-10-27 10:14:52--  http://a/
+       Resolving a... failed: Name or service not known.
+       wget: unable to resolve host address `a'
+       .
+       .
+
+     then the re-definition of wget has not been retained by the current shell. Run
+     . ./def_wget and try again. You should get a response such as:
+
+     wget a b c
+     Expected wget usage: wget src -O dest
+     -O not found. No action taken
+
+     if the environment is set correctly
+   ]
+
+5. The setup is now complete and moving to the CONFIG directory and issuing a command
+   such as:
+
+    ./makenemo -n MYISOMIP -u ISOMIP -m target_arch
+
+   should correctly configure from local archives only.   
+
+   [ Tip: the -u argument ( and hence the need to switch wget to local copies on isolated
+     systems ) is only required when compiling for the first time. Subsequent compilations
+     following code changes in the MYISOMIP directories can be carried out in your
+     default nemo environment. I.e.:
+
+     ./makenemo -n MYISOMIP -m target_arch
+
+     will not require any of the preceeding steps in future sessions.
+   ]
+

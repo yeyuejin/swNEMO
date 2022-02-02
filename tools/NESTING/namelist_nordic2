@@ -1,0 +1,108 @@
+&input_output
+    iom_activated = .true.
+/
+
+&coarse_grid_files    
+    parent_coordinate_file = '1_coordinates.nc'
+    parent_bathy_level     = '1_meshmask.nc'
+    parent_level_name      = 'mbathy'
+    parent_bathy_meter     = '1_bathy_meter.nc'
+    parent_meter_name      = 'Bathymetry'
+    parent_domcfg_out      = '1_domain_cfg.nc'
+    parent_jperio          = 0
+/    
+    
+&bathymetry    
+    new_topo           = .true.
+    elevation_database = 'GEBCO_2014_2D.nc'
+    elevation_name     = 'elevation'
+    smoothing          = .true.
+    smoothing_factor   = 0.6
+    ln_agrif_domain    = .true.
+    npt_connect        = 2 
+    npt_copy           = 2 
+    removeclosedseas   = .true.
+    type_bathy_interp  = 0 
+    rn_hmin            = -3
+/   
+
+&nesting    
+    imin = 38
+    imax = 80
+    jmin = 71
+    jmax = 111
+    rho  = 3
+    rhot = 3
+    nbghostcellsfine = 3
+    bathy_update = .true.
+    parent_bathy_meter_updated = '1_bathy_updated.nc'
+    parent_domcfg_updated = '1_domain_cfg_updated.nc'
+/
+
+&vertical_grid    
+    ln_e3_dep = .true.
+    ppkth     = 21.4333619793800
+    ppacr     = 3
+    ppdzmin   = 0
+    pphmax    = 0
+    psur      = -4762.96143546300
+    pa0       = 255.58049070440
+    pa1       = 245.58132232490
+    N         = 31
+    ldbletanh = .false.
+    pa2       = 0
+    ppkth2    = 0
+    ppacr2    = 0
+/    
+    
+&partial_cells    	
+    partial_steps      = .true.
+    e3zps_min          = 20.
+    e3zps_rat          = 0.1
+/
+
+&nemo_coarse_grid
+    jpizoom = 1
+    jpjzoom = 1
+/
+
+&forcing_files		   
+    FLX_FILES = 
+    '1_data_1m_salinity_nomask.nc',
+    '1_data_1m_potential_temperature_nomask.nc',
+    '1_geothermal_heating.nc'
+    '1_mixing_power_bot.nc',
+    '1_mixing_power_pyc.nc',
+    '1_mixing_power_cri.nc',
+    '1_chlorophyll.nc'
+/
+
+&interp
+    VAR_INTERP =
+    'votemper/bilinear',
+    'vosaline/bilinear',
+    'heatflow/bilinear'
+    'field/bilinear',
+    'field/bilinear',
+    'field/bilinear',
+    'CHLA/bilinear'
+/
+
+&restart
+    restart_file = 'restart.nc'   
+    shlat = 0
+    dimg = false
+    dimg_output_file = 'test_dimg'
+    adatrj = 360.25 
+    interp_type = 'bilinear'
+/ 
+
+&restart_trc
+    restart_trc_file = 'restart_trc.nc'   
+    interp_type = 'bilinear'
+/ 
+
+&restart_ice
+    restart_ice_file = 'restart_ice.nc'
+    interp_type = 'bilinear'
+/

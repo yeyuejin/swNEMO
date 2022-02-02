@@ -1,0 +1,3 @@
+#!/bin/ksh
+BATCH_CMD="qsub"
+ARCH="XC40_METO"
