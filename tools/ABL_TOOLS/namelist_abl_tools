@@ -1,0 +1,53 @@
+:
+:-----------------------------------------------------------------------------
+: Atmospheric Boundary Layer preprocessing tool 
+:-----------------------------------------------------------------------------
+:
+&nml_dom
+    jpka         =      50,
+    hmax         =   2000.,
+    theta_s      =      2.,
+    hc           =    100.,
+    ln_impose_z1 =  .true.,
+    z1           =     10.,
+/
+
+&nml_opt
+    ptemp_method    =        3  ,  ! potential temperature computation method
+    ln_slp_smth     =   .true.  ,  ! smooth slp and ghw at high latitudes only
+    ln_drw_smth     =   .false. ,  ! smooth after drowning
+    ln_slp_log      =   .false. ,  ! read log(slp)
+    ln_read_zsurf   =   .false. ,  ! read surface geopotential
+    ln_hpg_frc      =   .true.  ,  ! compute horizontal pressure gradient
+    ln_geo_wnd      =   .false. ,  ! compute geostrophic wind
+    ln_c1d          =   .false. ,  ! 1D case
+    ln_read_mask    =   .true.  ,  ! read mask file
+    ln_lsm_land     =   .false. ,  ! inverse land & sea masks
+    ln_perio_latbc  =   .true.  ,  ! periodic lateral boundary conditions
+/
+
+&nml_fld
+    cn_dir      = '',
+    mask_var    = 'LSM',
+    file_m      = 'MASK.nc',
+    file_u      = 'U3D.nc',
+    file_v      = 'V3D.nc',
+    file_t      = 'T3D.nc',
+    file_q      = 'Q3D.nc',
+    file_p      = 'P2D.nc',
+    file_z      = 'Z2D.nc',
+    file_geos   = 'UVG_OUT.nc',
+    file_hpg    = 'HPG_OUT.nc',
+/
+
+&nml_out
+    grd_file  = 'dom_cfg_abl_L50Z10.nc',
+    abl_file  = 'ABL_L50Z10_OUT.nc',
+    drwn_file = 'ABL_DRWN_L50Z10_OUT.nc',
+    var_name  = '',
+/
+
+&nml_c1d
+    iloc = 283,
+    jloc =  52,
+/

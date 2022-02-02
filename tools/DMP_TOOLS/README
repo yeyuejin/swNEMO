@@ -1,0 +1,5 @@
+DMP_TOOLS should be used to create a netcdf file called resto.nc containing restoration coefficients for use with the tra_dmp module in NEMO. Further instructions for it's use are available in the NEMO users guide.
+
+The tool can be compiled using the maketools script in the NEMOGCM/TOOLS directory as follows:
+./maketools -m $ARCH -n DMP_TOOLS
+where $ARCH indicates the arch file to be used from the directory NEMOGCM/ARCH. For example to use NEMOGCM/ARCH/arch-PW7_MONSOON.fcm, $ARCH would be PW7_MONSOON.

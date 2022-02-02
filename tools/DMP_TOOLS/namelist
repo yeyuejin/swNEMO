@@ -1,0 +1,24 @@
+&nam_dmp_create
+    cp_cfg = 'orca'            ! Name of model grid (orca and C1D have special options - otherwise ignored)
+    cp_cfz = 'antarctic'       ! Name of zoom configuration (arctic and antarctic have some special treatment if lzoom=.true.)
+    jp_cfg = 2                 ! Resolution of the model (used for med_red_seas damping)
+    lzoom = .false.            ! Zoom configuration or not
+    ln_full_field = .false.    ! Calculate coefficient over whole of domain 
+    ln_med_red_seas = .true.   ! Damping in Med/Red Seas (or local modifications here if ln_full_field=.true.)
+    ln_old_31_lev_code = .true.   ! Replicate behaviour of old online code for 31 level model (Med/Red seas damping based on level number instead of depth)
+    ln_coast = .true.          ! Reduce near to coastlines 
+    ln_zero_top_layer = .true. ! No damping in top layer
+    ln_custom = .false.        ! Call "custom" module to apply user modifications to the damping coefficient field
+    nn_hdmp = 10               ! Damp poleward of this latitude (smooth transition up to maximum damping)
+    pn_surf = 0.25             ! Surface Relaxation timescale (days) 
+    pn_bot = 0.25              ! Bottom relaxation timescale (days)
+    pn_dep = 1000              ! Transition depth from upper to deep ocean
+    jperio = 2                 ! Lateral boundary condition (as specified in namelist_cfg for model run).
+/
+
+&nam_zoom_dmp
+    lzoom_n = .false.     ! Open boundary had northern edge?
+    lzoom_e = .false.     ! Open boundary at eastern edge?
+    lzoom_w = .false.     ! Open boundary at western edge?
+    lzoom_s = .false.     ! Open boundary at southern edge?
+/
