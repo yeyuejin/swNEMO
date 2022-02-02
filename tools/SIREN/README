@@ -1,0 +1,7 @@
+
+To create SIREN documentation, run doxygen in TOOLS/SIREN directory
+(http://www.stack.nl/~dimitri/doxygen/index.html version 1.8.5 or upper)
+then
+   open ./TOOLS/SIREN/doc/html/index.html in your web browser
+or 
+   run gmake in ./TOOLS/SIREN/doc/latex directory and open ./TOOLS/SIREN/doc/latex/refman.pdf 

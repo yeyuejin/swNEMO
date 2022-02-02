@@ -1,0 +1,7 @@
+
+To be sure to use a template of namelist up to date, 
+run create_templates.py on the Siren program you want to use.
+
+Exemple:
+python create_templates.py create_bathy.f90 create_bathy.nam
+

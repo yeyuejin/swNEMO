@@ -1,0 +1,30 @@
+/*!
+ @mainpage About 
+
+ SIREN is a software to set up regional configuration with [NEMO](http://www.nemo-ocean.eu).<br/> 
+ Actually SIREN creates the input files you need to run a NEMO regional configuration.<br/>
+ 
+ SIREN allows you to create your own regional configuration embedded in a wider one.<br/>
+
+ To know how to install SIREN see @ref md_src_docsrc_1_install.
+
+ You could find a tutorial for a quick start with SIREN in @ref md_src_docsrc_2_quickstart.<br/>
+ For more information about how to use each component of SIREN
+ - see create_coord.f90 to create fine grid coordinate file
+ - see create_bathy.f90 to create fine grid bathymetry
+ - see merge_bathy.f90 to merge fine grid bathymetry
+ - see create_meshmask.f90 to create mesh mask or domain_cfg file.
+ - see create_layout.f90 to create/compute the domain layout of your configuration.
+ - see create_restart.f90 to create initial state file, or other fields.
+ - see create_boundary.F90 to create boundary condition
+
+<HR>
+   <b>
+   - @ref md_src_docsrc_1_install
+   - @ref md_src_docsrc_2_quickstart
+   - @ref md_src_docsrc_3_support_bug
+   - @ref md_src_docsrc_4_codingRules
+   - @ref md_src_docsrc_5_changeLog
+   - @ref todo
+   </b>
+*/
