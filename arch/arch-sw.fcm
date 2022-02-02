@@ -1,0 +1,65 @@
+# generic gfortran compiler options for linux
+#
+# NCDF_HOME   root directory containing lib and include subdirectories for netcdf4
+# HDF5_HOME   root directory containing lib and include subdirectories for HDF5
+# XIOS_HOME   root directory containing lib for XIOS
+# OASIS_HOME  root directory containing lib for OASIS
+#
+# NCDF_INC    netcdf4 include file
+# NCDF_LIB    netcdf4 library
+# XIOS_INC    xios include file    (taken into accound only if key_iomput is activated)
+# XIOS_LIB    xios library         (taken into accound only if key_iomput is activated)
+# OASIS_INC   oasis include file   (taken into accound only if key_oasis3 is activated)
+# OASIS_LIB   oasis library        (taken into accound only if key_oasis3 is activated)
+#
+# FC          Fortran compiler command
+# FCFLAGS     Fortran compiler flags
+# FFLAGS      Fortran 77 compiler flags
+# LD          linker
+# LDFLAGS     linker flags, e.g. -L<lib dir> if you have libraries
+# FPPFLAGS    pre-processing flags
+# AR          assembler
+# ARFLAGS     assembler flags
+# MK          make
+# USER_INC    complete list of include files
+# USER_LIB    complete list of libraries to pass to the linker
+# CC          C compiler used to compile conv for AGRIF
+# CFLAGS      compiler flags used with CC
+#
+# Note that:
+#  - unix variables "$..." are accpeted and will be evaluated before calling fcm.
+#  - fcm variables are starting with a % (and not a $)
+#
+#
+#%NCDF_HOME           /usr/sw/yyzlib/netcdf-f-4.5.2
+#%HDF5_HOME           /usr/sw/yyzlib/hdf5-1.8.9
+#%ZLIB_HOME           /usr/sw/yyzlib/zlib-1.2.8
+%NCDF_HOME           /usr/sw/swfile/netcdf
+%HDF5_HOME           /usr/sw/swfile/netcdf
+%ZLIB_HOME           /home/export/online1/mdt00/systest/swyyz/yeyuejin/sw_local
+%SWLU_HOME           /home/export/online1/mdt00/swmore/opensource/swlu
+
+%MPI_INC             -I/usr/sw/mpi/mpisw9gcc_20200628/include
+%NCDF_INC            -I%NCDF_HOME/include -I%HDF5_HOME/include
+%NCDF_LIB            -L%NCDF_HOME/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5
+%SWPERF_INC          -I%SWPERF_HOME/include
+%SWPERF_LIB          -L%SWPERF_HOME/lib -lswperf
+
+%USER_OBJ            /home/export/online1/mdt00/systest/swyyz/yeyuejin/full-nemo4/release-4.0.2.SP.master/src/MY/bld/*.o
+
+%CPP	               gcc -E -Dkey_nosignedzero
+%FC	                 mpif90  #sw9gfortran
+#%FCFLAGS             -c -fdefault-real-8 -O2 -msimd -mieee -ffree-line-length-1024 
+%FCFLAGS             -c -O2 -msimd -mieee -ffree-line-length-1024 
+%FFLAGS              %FCFLAGS
+%LD                  mpif90
+%LDFLAGS             -lstdc++ 
+%FPPFLAGS            -P -C -traditional
+%AR                  sw9ar
+%ARFLAGS             -r
+%MK                  make
+%USER_INC            %NCDF_INC %MPI_INC
+%USER_LIB            %NCDF_LIB %USER_OBJ -L/usr/sw/lib -lm -lz -lhadafsclientgj -lswverbs -lpthread -lm_slave /usr/sw/yyzlib/math_lib_vect/basic_cxl_9cg.a
+
+%CC                  mpicc
+%CFLAGS              -O0
