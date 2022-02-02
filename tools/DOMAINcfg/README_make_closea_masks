@@ -1,0 +1,24 @@
+Make_closea_masks.py is a python routine to create closea mask fields
+based on the old NEMO closea index definitions.  Details of the grid
+and the bathymetry are read in from the domain_cfg.nc file and the
+closea_mask* fields are appended to the same domain_cfg.nc file.
+
+To use this routine:
+
+  1. Provide domain_cfg.nc file for your configuration.
+
+  2. Define closed seas for your configuration in Section 2 
+     using indices in the old NEMO style. (Read the comments on 
+     indexing in Section 2!). Examples are given for eORCA025 
+     (UK version) for the three different options:
+        - just defining closed seas (and distribute fluxes over global ocean)
+        - defining closed seas with a RNF mapping for the American Great Lakes to the St Laurence Seaway
+        - defining closed seas with an EMPMR mapping for the American Great Lakes to the St Laurence Seaway
+
+  3. Choose whether to mask the closea_mask* fields. This is not required
+     but makes the fields easier to check.
+
+  4. Module can be run in python or from linux command line if you
+     change the top line to point to your python installation. If 
+     using from command line, type "make_closea_masks.py --help"
+     for usage.

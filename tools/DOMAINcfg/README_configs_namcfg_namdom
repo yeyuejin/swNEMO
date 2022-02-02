@@ -1,0 +1,609 @@
+
+
+This README file contains the informations for the &namcfg namelist for some configurations whic are not one of the reference configurations.
+These informations wher previoulsy in NEMO/OCE_SRC_par_*.h90 files. The full test with these configurations has not been done.
+
+
+ORCA_R4
+=======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   jp_cfg      =       4               !  resolution of the configuration
+   jpidta      =      92               !  1st lateral dimension ( >= jpi )
+   jpjdta      =      76               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =      92               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =      76               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       4               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+ORCA_R1 75 vertical levels
+=======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   jp_cfg      =       1               !  resolution of the configuration
+   jpidta      =     362               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     292               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      75               !  number of levels      ( >= jpk )
+   jpiglo      =     362               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =     292               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       6               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -3958.951371276829  !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     103.9530096000000 ! (default coefficients)
+   ppa1        =       2.415951269000000   !
+   ppkth       =      15.35101370000000    !
+   ppacr       =       7.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =   .TRUE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =     100.7609285000000 !  Double tanh function parameters
+   ppkth2      =      48.02989372000000    !
+   ppacr2      =      13.00000000000   !
+/
+
+
+ORCA_R1 46 vertical levels
+=======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   jp_cfg      =       1               !  resolution of the configuration
+   jpidta      =     362               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     292               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      46               !  number of levels      ( >= jpk )
+   jpiglo      =     362               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =     292               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       6               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =  999998.0             !  ORCA r4, r2 and r05 coefficients
+   ppa0        =  999998.0             ! (default coefficients)
+   ppa1        =  999998.0             !
+   ppkth       =      23.563           !
+   ppacr       =       9.0             !
+   ppdzmin     =       6.0             !  Minimum vertical spacing
+   pphmax      =    5750.              !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+ORCA_R05 
+========
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   jp_cfg      =      05               !  resolution of the configuration
+   jpidta      =     722               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     511               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =     722               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =     511               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       6               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+
+ORCA_R05 Antarctic zoom
+========
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   cp_cfz      =  "antarctic"          !  name of the zoom of configuration
+   jp_cfg      =      05               !  resolution of the configuration
+   jpidta      =     722               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     511               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =     722               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =     187               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       1               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+
+ORCA_R05 Arctic zoom
+========
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   cp_cfz      =  "arctic"             !  name of the zoom of configuration
+   jp_cfg      =      05               !  resolution of the configuration
+   jpidta      =     722               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     511               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =     562               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =     211               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =      81               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =     301               !  in data domain indices
+   jperio      =       5               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+ORCA2 - Antarctic zoom
+======================
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   cp_cfz      =  "antarctic"          !  name of the zoom of configuration
+   jp_cfg      =       2               !  resolution of the configuration
+   jpidta      =     182               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     149               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =     182               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =      50               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       1               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.              !  Minimum vertical spacing
+   pphmax      =  999999.              !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.              !  Double tanh function parameters
+   ppkth2      =  999999.              !
+   ppacr2      =  999999.              !
+/
+
+
+ORCA2 - Arctic zoom
+=================== 
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   cp_cfz      =  "arctic"             !  name of the zoom of configuration
+   jp_cfg      =       2               !  resolution of the configuration
+   jpidta      =     182               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     149               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =     142               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =      53               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =      21               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =      97               !  in data domain indices
+   jperio      =       3               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.              !  Minimum vertical spacing
+   pphmax      =  999999.              !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.              !  Double tanh function parameters
+   ppkth2      =  999999.              !
+   ppacr2      =  999999.              !
+/
+
+
+ORCA025 - 75 vertical levels
+=======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   jp_cfg      =     025               !  resolution of the configuration
+   jpidta      =    1442               !  1st lateral dimension ( >= jpi )
+   jpjdta      =    1021               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      75               !  number of levels      ( >= jpk )
+   jpiglo      =    1442               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =    1021               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       4               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -3958.951371276829  !  ORCA r4, r2 and r05 coefficients
+   ppa0        =    103.9530096000000  ! (default coefficients)
+   ppa1        =      2.415951269000000  !
+   ppkth       =     15.35101370000000 !
+   ppacr       =       7.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =   .TRUE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =     100.7609285000000 !  Double tanh function parameters
+   ppkth2      =      48.02989372000000  !
+   ppacr2      =      13.              !
+/
+
+
+ORCA025 - 46 vertical levels
+=======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   jp_cfg      =    1442               !  resolution of the configuration
+   jpidta      =    1021               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     511               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      46               !  number of levels      ( >= jpk )
+   jpiglo      =    1442               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =    1021               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       4               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =  999998.0             !  ORCA r4, r2 and r05 coefficients
+   ppa0        =  999998.0             ! (default coefficients)
+   ppa1        =  999998.0             !
+   ppkth       =      23.563           !
+   ppacr       =       9.0             !
+   ppdzmin     =       6.0             !  Minimum vertical spacing
+   pphmax      =    5750.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+EEL R2: channel
+======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =   "eel"               !  name of the configuration
+   jp_cfg      =       2               !  resolution of the configuration
+   jpidta      =      83               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     242               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      30               !  number of levels      ( >= jpk )
+   jpiglo      =      83               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =     242               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       1               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       3               !  type of horizontal mesh
+   ppglam0     =       0.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =      35.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =    2000.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =    2000.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -2033.194295283385  !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     155.8325369664153 ! (default coefficients)
+   ppa1        =     146.3615918601890 !
+   ppkth       =      17.28520372419791  !
+   ppacr       =       5.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+
+EEL R5: channel
+======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =   "eel"               !  name of the configuration
+   jp_cfg      =       5               !  resolution of the configuration
+   jpidta      =      66               !  1st lateral dimension ( >= jpi )
+   jpjdta      =      66               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =      66               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =      66               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       1               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       2               !  type of horizontal mesh
+   ppglam0     =       0.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =      43.436430714     ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =    8000.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =    8000.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+
+EEL R6: 6 km resolution channel
+======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =   "eel"               !  name of the configuration
+   jp_cfg      =       6               !  resolution of the configuration
+   jpidta      =      29               !  1st lateral dimension ( >= jpi )
+   jpjdta      =      83               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      30               !  number of levels      ( >= jpk )
+   jpiglo      =      29               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =      83               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       1               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       3               !  type of horizontal mesh
+   ppglam0     =       0.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =      35.              ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =    6000.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =    6000.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -2033.194295283385  !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     155.8325369664153 ! (default coefficients)
+   ppa1        =     146.3615918601890 !
+   ppkth       =      17.28520372419791   !
+   ppacr       =       5.0             !
+   ppdzmin     =  999999.0             !  Minimum vertical spacing
+   pphmax      =  999999.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+
+POMME: 025
+======
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =   "pomme"             !  name of the configuration
+   jp_cfg      =     025               !  resolution of the configuration
+   jpidta      =      30               !  1st lateral dimension ( >= jpi )
+   jpjdta      =      40               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      46               !  number of levels      ( >= jpk )
+   jpiglo      =      30               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =      40               !  2nd    -                  -    --> j  =jpjdta
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       0               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =  999998.0             !  ORCA r4, r2 and r05 coefficients
+   ppa0        =  999998.0             ! (default coefficients)
+   ppa1        =  999998.0             !
+   ppkth       =      23.563           !
+   ppacr       =       9.0             !
+   ppdzmin     =       6.0             !  Minimum vertical spacing
+   pphmax      =    5750.0             !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.0             !  Double tanh function parameters
+   ppkth2      =  999999.0             !
+   ppacr2      =  999999.0             !
+/
+
+C1D - 1D configuration. Add key_c1d in active cpp keys
+!-----------------------------------------------------------------------
+&namcfg        !   parameters of the configuration
+!-----------------------------------------------------------------------
+   cp_cfg      =  "orca"               !  name of the configuration
+   jp_cfg      =       2               !  resolution of the configuration
+   jpidta      =     182               !  1st lateral dimension ( >= jpi )
+   jpjdta      =     149               !  2nd    "         "    ( >= jpj )
+   jpkdta      =      31               !  number of levels      ( >= jpk )
+   jpiglo      =       3               !  1st dimension of global domain --> i =jpidta
+   jpjglo      =       3               !  2nd    -                  -    --> j  =jpjdta
+! Choose postion of the 1D column: 
+!            jpizoom =   61, jpjzoom =   133  (160W,75N)
+!            jpizoom =   61, jpjzoom =   110  (160W,50N)
+!            jpizoom =   61, jpjzoom =   97   (160W,30N)
+!            jpizoom =   61, jpjzoom =   86   (160W,10N)
+!            jpizoom =   61, jpjzoom =   49   (160W,30S)
+!            jpizoom =   61, jpjzoom =   27   (160W,60S)
+!            jpizoom =   61, jpjzoom =    7   (160W,75S)
+!            jpizoom =   110,jpjzoom =   97   (64W,31.5N) BATS site
+   jpizoom     =       1               !  left bottom (i,j) indices of the zoom
+   jpjzoom     =       1               !  in data domain indices
+   jperio      =       0               !  lateral cond. type (between 0 and 6)
+/
+!-----------------------------------------------------------------------
+&namdom        !  
+!-----------------------------------------------------------------------
+   jphgr_msh   =       0               !  type of horizontal mesh
+   ppglam0     =  999999.0             !  longitude of first raw and column T-point (jphgr_msh = 1)
+   ppgphi0     =  999999.0             ! latitude  of first raw and column T-point (jphgr_msh = 1)
+   ppe1_deg    =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_deg    =  999999.0             !  meridional grid-spacing (degrees)
+   ppe1_m      =  999999.0             !  zonal      grid-spacing (degrees)
+   ppe2_m      =  999999.0             !  meridional grid-spacing (degrees)
+   ppsur       =   -4762.96143546300   !  ORCA r4, r2 and r05 coefficients
+   ppa0        =     255.58049070440   ! (default coefficients)
+   ppa1        =     245.58132232490   !
+   ppkth       =      21.43336197938   !
+   ppacr       =       3.0             !
+   ppdzmin     =  999999.              !  Minimum vertical spacing
+   pphmax      =  999999.              !  Maximum depth
+   ldbletanh   =  .FALSE.              !  Use/do not use double tanf function for vertical coordinates
+   ppa2        =  999999.              !  Double tanh function parameters
+   ppkth2      =  999999.              !
+   ppacr2      =  999999.              !
+/
