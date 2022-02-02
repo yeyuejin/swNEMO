@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -x
+
+rm -rf ctime.o
+sw9gcc -mhost -mieee -msimd -O2 -c ctime.c
+sw9gcc -mslave -mieee -msimd -O2 -c sw_slv_zdfsh2.c
