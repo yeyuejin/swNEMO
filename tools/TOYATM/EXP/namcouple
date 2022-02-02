@@ -1,0 +1,124 @@
+# This is a typical input file for OASIS3-MCT, using NetCDF 
+# format for restart input files. OASIS3-MCT reads in this file 
+# at run time. Don't hesitate to ask precisions or make 
+# suggestions (oasishelp@cerfacs.fr)
+#
+# Any line beginning with # is ignored. Blank lines are not allowed
+####################################################################
+ $NFIELDS 
+12
+ $END
+############################################
+ $RUNTIME 
+259200
+ $END
+############################################
+ $NLOGPRT 
+1 0
+ $END
+############################################
+ $STRINGS 
+O_SSTSST ATSSTSST 1 28800 3 rst.nc EXPORTED
+182 149 180 90 torc lmdz
+P 2 P 0 
+CHECKIN SCRIPR CHECKOUT 
+INT=1
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATSOLFLX O_QnsMix 1 28800 4 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN BLASOLD SCRIPR CHECKOUT 
+INT=1
+10.  0
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATSOLFLX O_QnsIce 1 28800 4 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN BLASOLD SCRIPR CHECKOUT 
+INT=1
+10.  0
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATSOLFLX O_QsrIce 1 28800 4 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN BLASOLD SCRIPR CHECKOUT 
+INT=1
+10.  0
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATSOLFLX O_QsrMix 1 28800 4 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN BLASOLD SCRIPR CHECKOUT 
+INT=1
+10.  0
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATSOLFLX O_dQnsdT 1 28800 4 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN BLASOLD SCRIPR CHECKOUT 
+INT=1
+0.  0
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATSOLFLX O_OTaux1 1 28800 4 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN BLASOLD SCRIPR CHECKOUT 
+INT=1
+0.  0
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATSOLFLX O_OTauy1 1 28800 4 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN BLASOLD SCRIPR CHECKOUT 
+INT=1
+0.  0
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATFLXEMP OTotRain 1 28800 3 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN SCRIPR CHECKOUT 
+INT=1
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATFLXEMP OTotSnow 1 28800 3 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN SCRIPR CHECKOUT 
+INT=1
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATFLXEMP OTotEvap 1 28800 3 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN SCRIPR CHECKOUT 
+INT=1
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ATFLXEMP OIceEvap 1 28800 3 rst.nc EXPORTED
+180 90 182 149 lmdz torc
+P 0 P 2 
+CHECKIN SCRIPR CHECKOUT 
+INT=1
+BILINEAR LR SCALAR LATLON 1
+INT=1
+#
+ $END
