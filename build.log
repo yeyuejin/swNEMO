@@ -1,0 +1,48 @@
+
+You are installing a new configuration GYRE_PISCES from GYRE_PISCES with sub-components:  OCE TOP
+cp: "GYRE_PISCES/cpp_GYRE_PISCES.fcm" 与"GYRE_PISCES/cpp_GYRE_PISCES.fcm" 为同一文件
+Creating GYRE_PISCES/WORK = OCE TOP for GYRE_PISCES
+MY_SRC directory is : GYRE_PISCES/MY_SRC
+WARNING: /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/mk/arch_nemo.fcm: LINE 51:
+         %SWPERF_HOME: variable not expanded
+WARNING: /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/mk/arch_nemo.fcm: LINE 52:
+         %SWPERF_HOME: variable not expanded
+Build command started on Tue Mar 30 16:36:02 2021.
+->Parse configuration: start
+Config file (bld): /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/mk/bldxag.cfg
+Config file (bld): /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/mk/arch_nemo.fcm
+Config file (bld): /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/mk/cpp.fcm
+->Parse configuration: 0 second
+->Setup destination: start
+Destination: swyyz@psn01.qd.sw:/home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD
+->Setup destination: 0 second
+->Setup build: start
+->Setup build: 1 second
+->Pre-process: start
+No. of files scanned for PP dependency: 2
+No. of pre-processed file: 1
+->Pre-process: 1 second
+->Scan dependency: start
+No. of file scanned for dependency: 1
+/home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/Makefile: updated
+->Scan dependency: 0 second
+->Generate Fortran interface: start
+->Generate Fortran interface: 0 second
+->Make: start
+make[1]: Entering directory `/home/export/online1/mdt00/systest/swyyz/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD'
+fcm_internal compile:F nemo /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/ppsrc/nemo/nemogcm.f90 nemogcm.o
+mpif90   -o nemogcm.o -I/home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/inc -c -O2 -msimd -mieee -ffree-line-length-1024 -I/usr/sw/swfile/netcdf/include -I/usr/sw/swfile/netcdf/include -I/usr/sw/mpi/mpisw9gcc_20200628/include /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/ppsrc/nemo/nemogcm.f90
+fcm_internal compile:F nemo /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/WORK/nemo.f90 nemo.o
+touch /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/done/nemogcm.done
+mpif90   -o nemo.o -I/home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/inc -c -O2 -msimd -mieee -ffree-line-length-1024 -I/usr/sw/swfile/netcdf/include -I/usr/sw/swfile/netcdf/include -I/usr/sw/mpi/mpisw9gcc_20200628/include /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/WORK/nemo.f90
+fcm_internal load:F nemo nemo.o nemo.exe
+sw9ar: creating /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/tmp/lib__fcm__nemo.a
+mpif90 -o nemo.exe /home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/obj/nemo.o -L/home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD/lib -l__fcm__nemo -lstdc++ -L/usr/sw/swfile/netcdf/lib -lnetcdff -lnetcdf -lhdf5_hl -lhdf5 /home/export/online1/mdt00/systest/swyyz/yeyuejin/full-nemo4/release-4.0.2.SP.master/src/MY/bld/*.o -L/usr/sw/lib -lm -lz -lhadafsclientgj -lswverbs -lpthread -lm_slave /usr/sw/yyzlib/math_lib_vect/basic_cxl_9cg.a
+/usr/sw/swfile/netcdf/lib/libhdf5.a(H5PL.o): In function `H5PL__open':
+/home/export/base/systest/swfile/online/gaojie/hdf5-1.10.1/src/H5PL.c:878: warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
+/usr/sw/lib/libhadafsclientgj.a(common-utils.o):/home/export/base/systest/swfile/online/gaojie/hadafs_client.sw/common-utils.c:100: warning: Using 'getaddrinfo' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
+make[1]: Leaving directory `/home/export/online1/mdt00/systest/swyyz/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs/GYRE_PISCES/BLD'
+->Make: 10 seconds
+->TOTAL: 12 seconds
+Build command finished on Tue Mar 30 16:36:14 2021.
+/home/export/base/systest/swyyz/online/yeyuejin/full-nemo4/release-4.0.2.SP.master/cfgs
